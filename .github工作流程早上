@@ -1,4 +1,4 @@
-name: morning名称：早上
+名称：早上
 上：
   时间表：
   - cron：   ' 0 0 * * * '
@@ -30,29 +30,3 @@ name: morning名称：早上
       START_DATE : ${{ 秘密.START_DATE }}
       生日：${{秘密.生日}}
       城市：${{ 秘密.CITY }}
-jobs:
-  send_message:
-    runs-on: ubuntu-latest
-    name: send morning to your girlfriend
-
-    steps:
-    - name: checkout
-      uses: actions/checkout@v3
-      with:
-        ref: master
-
-    - name: sender
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
-        architecture: 'x64'
-    - run: pip install -r ./requirements.txt && python ./main.py
-
-    env:
-      APP_ID: ${{ secrets.APP_ID }}
-      APP_SECRET: ${{ secrets.APP_SECRET }}
-      TEMPLATE_ID: ${{ secrets.TEMPLATE_ID }}
-      USER_ID: ${{ secrets.USER_ID }}
-      START_DATE: ${{ secrets.START_DATE }}
-      BIRTHDAY: ${{ secrets.BIRTHDAY }}
-      CITY: ${{ secrets.CITY }}
